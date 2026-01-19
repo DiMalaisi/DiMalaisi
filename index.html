@@ -1,0 +1,3054 @@
+<!doctype html>
+<html lang=es>
+<meta charset=UTF-8>
+<meta content="width=device-width,initial-scale=1" name=viewport>
+<title>Limón | Proyecto Digital</title>
+<link href=https://fonts.googleapis.com rel=preconnect>
+<link href=https://fonts.gstatic.com rel=preconnect crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700;900&family=Inter:wght@400;600;800&display=swap" rel=stylesheet>
+<style>
+:root {
+--brand-primary: #F6E96B;
+--brand-secondary: #D2FF72;
+--surface-dark: #050505;
+--glass-alpha: rgba(255, 255, 255, 0.02);
+--border-alpha: rgba(255, 255, 255, 0.08);
+--radius-custom: 40px
+}
+
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+scroll-behavior: smooth
+}
+
+body {
+font-family: Poppins, sans-serif;
+background: var(--surface-dark);
+color: #fff;
+overflow-x: hidden;
+-webkit-font-smoothing: antialiased
+}
+
+body::before {
+content: "";
+position: fixed;
+inset: 0;
+opacity: .1;
+z-index: 1;
+pointer-events: none;
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")
+}
+/* ESTILOS ACTUALIZADOS PARA EL MENÚ */
+.limon-nav {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+z-index: 1000;
+padding: 15px 20px;
+transition: all 0.3s ease;
+}
+
+.nav-container {
+display: flex;
+align-items: center;
+justify-content: space-between;
+background: rgba(5, 5, 5, 0.9);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid var(--border-alpha);
+border-radius: 40px 0 40px 40px;
+padding: 10px 20px;
+max-width: 1200px;
+margin: 0 auto;
+}
+
+/* Logo */
+.nav-logo {
+font-family: Poppins, sans-serif;
+font-weight: 900;
+font-size: 1.4rem;
+color: var(--brand-primary);
+text-decoration: none;
+letter-spacing: -0.5px;
+z-index: 1002;
+}
+
+/* Botón hamburguesa móvil - CORREGIDO */
+.nav-mobile-toggle {
+display: none;
+flex-direction: column;
+justify-content: space-between;
+width: 30px;
+height: 24px;
+background: none;
+border: none;
+cursor: pointer;
+padding: 0;
+z-index: 1002;
+}
+
+.hamburger-line {
+width: 100%;
+height: 3px;
+background-color: var(--brand-primary);
+border-radius: 2px;
+transition: all 0.3s ease;
+transform-origin: center;
+}
+
+/* Animación cuando está activo */
+.nav-mobile-toggle.active .hamburger-line:nth-child(1) {
+transform: translateY(10.5px) rotate(45deg);
+}
+
+.nav-mobile-toggle.active .hamburger-line:nth-child(2) {
+opacity: 0;
+}
+
+.nav-mobile-toggle.active .hamburger-line:nth-child(3) {
+transform: translateY(-10.5px) rotate(-45deg);
+}
+
+/* Menú de navegación - ESCRITORIO */
+.nav-links {
+display: flex;
+gap: 15px;
+align-items: center;
+}
+
+.nav-link {
+font-family: Inter, sans-serif;
+font-size: 0.85rem;
+font-weight: 600;
+color: rgba(255, 255, 255, 0.7);
+text-decoration: none;
+padding: 8px 18px;
+border-radius: 30px 0 30px 30px;
+transition: all 0.3s ease;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+border: 1px solid transparent;
+}
+
+.nav-link:hover {
+color: var(--brand-primary);
+background: rgba(255, 255, 255, 0.03);
+border-color: var(--border-alpha);
+}
+
+.nav-link.active {
+background: var(--brand-primary);
+color: #000;
+font-weight: 800;
+border-color: var(--brand-primary);
+}
+
+/* Carreras en verde */
+.nav-link.career {
+color: var(--brand-secondary) !important;
+font-size: 0.8rem;
+padding: 6px 15px;
+border-color: rgba(210, 255, 114, 0.3);
+background: rgba(210, 255, 114, 0.1);
+}
+
+.nav-link.career:hover {
+background: rgba(210, 255, 114, 0.2);
+border-color: var(--brand-secondary);
+}
+
+.nav-link.career.active {
+background: rgba(210, 255, 114, 0.2) !important;
+color: var(--brand-secondary) !important;
+border-color: var(--brand-secondary) !important;
+}
+
+/* MENÚ MÓVIL - DISEÑO MEJORADO */
+@media (max-width: 768px) {
+.limon-nav {
+padding: 10px 15px;
+}
+
+.nav-container {
+padding: 8px 15px;
+position: relative;
+}
+
+/* Mostrar botón hamburguesa en móvil */
+.nav-mobile-toggle {
+display: flex;
+}
+
+/* Menú desplegable móvil - DISEÑO MEJORADO */
+.nav-links {
+position: fixed;
+top: 70px;
+right: 15px;
+width: auto;
+min-width: 200px;
+background: rgba(5, 5, 5, 0.98);
+backdrop-filter: blur(30px);
+-webkit-backdrop-filter: blur(30px);
+border: 1px solid var(--border-alpha);
+border-radius: 20px 0 20px 20px;
+padding: 15px;
+flex-direction: column;
+gap: 10px;
+z-index: 1001;
+box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+opacity: 0;
+transform: translateY(-10px);
+visibility: hidden;
+transition: all 0.3s ease;
+}
+
+.nav-links.active {
+opacity: 1;
+transform: translateY(0);
+visibility: visible;
+}
+
+.nav-link {
+width: 100%;
+text-align: center;
+padding: 12px 20px;
+border-radius: 15px 0 15px 15px;
+}
+
+/* Asegurar que no haya scroll horizontal */
+body {
+overflow-x: hidden;
+}
+}
+
+/* Para tablets medianas */
+@media (min-width: 769px) and (max-width: 1024px) {
+.nav-links {
+gap: 10px;
+}
+
+.nav-link {
+padding: 8px 15px;
+font-size: 0.8rem;
+}
+}
+
+/* ESTILOS PARA PESTAÑAS DE SERVICIOS */
+.service-tab-btn {
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 14px 28px;
+background: rgba(255, 255, 255, 0.03);
+border: 1px solid var(--border-alpha);
+border-radius: 30px 0 30px 30px;
+color: rgba(255, 255, 255, 0.6);
+font-family: Inter, sans-serif;
+font-weight: 800;
+font-size: 0.9rem;
+text-transform: uppercase;
+letter-spacing: 0.5px;
+cursor: pointer;
+transition: all 0.3s ease;
+min-width: 200px;
+}
+
+.service-tab-btn:hover {
+background: rgba(255, 255, 255, 0.05);
+border-color: var(--brand-primary);
+color: rgba(255, 255, 255, 0.8);
+}
+
+.service-tab-btn.active {
+background: var(--brand-primary);
+color: #000;
+border-color: var(--brand-primary);
+}
+
+.service-content {
+display: none;
+animation: fadeIn 0.5s ease;
+}
+
+.service-content.active {
+display: block;
+}
+
+.service-content.active .pricing-grid {
+display: grid !important;
+}
+
+.service-content.active .plan-card.reveal {
+display: flex !important;
+opacity: 1 !important;
+transform: translateY(0) !important;
+visibility: visible !important;
+}
+
+#web-content.active {
+display: block !important;
+}
+
+#web-content.active .plan-card {
+display: flex !important;
+opacity: 1 !important;
+transform: translateY(0) !important;
+}
+
+.service-content.active .plan-card {
+opacity: 1;
+transform: translateY(0);
+}
+
+/* Forzar visibilidad de planes en pestañas de servicios */
+.service-content.active .plan-card {
+opacity: 1 !important;
+transform: translateY(0) !important;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; transform: translateY(10px); }
+to { opacity: 1; transform: translateY(0); }
+}
+
+/* INDICADOR DE SECCIÓN */
+.section-indicator {
+position: fixed;
+right: 20px;
+top: 50%;
+transform: translateY(-50%);
+display: flex;
+flex-direction: column;
+gap: 10px;
+z-index: 999;
+}
+
+.indicator-dot {
+width: 8px;
+height: 8px;
+border-radius: 50%;
+background: rgba(255, 255, 255, 0.2);
+cursor: pointer;
+transition: all 0.3s ease;
+position: relative;
+}
+
+.indicator-dot.active {
+background: var(--brand-primary);
+transform: scale(1.2);
+}
+
+.indicator-dot:hover::after {
+content: attr(data-section);
+position: absolute;
+right: 20px;
+top: 50%;
+transform: translateY(-50%);
+background: rgba(5, 5, 5, 0.9);
+color: var(--brand-primary);
+font-family: Inter, sans-serif;
+font-size: 0.7rem;
+padding: 4px 10px;
+border-radius: 10px 0 10px 10px;
+white-space: nowrap;
+border: 1px solid var(--border-alpha);
+}
+
+#interactive-glow {
+position: fixed;
+width: 50vmax;
+height: 50vmax;
+background: radial-gradient(circle, rgba(210, 255, 114, .06) 0, transparent 70%);
+top: 0;
+left: 0;
+transform: translate(-50%, -50%);
+pointer-events: none;
+z-index: 0;
+transition: transform .2s cubic-bezier(.23, 1, .32, 1)
+}
+
+section {
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+
+padding: 60px 20px;
+position: relative
+}
+
+.app-container {
+position: relative;
+z-index: 2;
+width: 100%;
+max-width: 650px;
+padding: 40px 25px;
+background: var(--glass-alpha);
+backdrop-filter: blur(40px);
+-webkit-backdrop-filter: blur(40px);
+border: 1px solid var(--border-alpha);
+border-radius: var(--radius-custom) 0 var(--radius-custom) var(--radius-custom);
+text-align: center;
+box-shadow: 0 40px 100px rgba(0, 0, 0, .7)
+}
+
+@media (min-width:768px) {
+.app-container {
+padding: 80px 40px
+}
+}
+
+.hero-title {
+font-size: clamp(2.5rem, 12vw, 4.8rem);
+line-height: .9;
+letter-spacing: -.05em;
+text-transform: uppercase;
+margin-bottom: 24px;
+font-weight: 900
+}
+
+.hero-title span {
+background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent
+}
+
+.hero-desc {
+font-family: Inter, sans-serif;
+font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+line-height: 1.5;
+color: rgba(255, 255, 255, .4);
+max-width: 500px;
+margin: 0 auto 40px
+}
+
+.pricing-grid {
+display: grid;
+grid-template-columns: 1fr;
+gap: 20px;
+width: 100%;
+max-width: 1180px;
+z-index: 2;
+margin: 0 auto
+}
+
+@media (min-width:768px) {
+.pricing-grid {
+grid-template-columns: repeat(2, 1fr)
+}
+}
+
+@media (min-width:1100px) {
+.pricing-grid {
+grid-template-columns: repeat(3, 1fr)
+}
+}
+
+.plan-card {
+background: rgba(255, 255, 255, .015);
+backdrop-filter: blur(20px);
+border: 1px solid var(--border-alpha);
+border-radius: 30px 0 30px 30px;
+padding: 40px 30px;
+transition: all .5s ease;
+display: flex;
+flex-direction: column;
+position: relative;
+overflow: hidden;
+height: auto;
+min-height: 520px;
+}
+
+@media (min-width:1024px) {
+.pricing-grid:hover .plan-card:not(:hover) {
+transform: scale(.96);
+filter: blur(5px) grayscale(.8);
+opacity: .2
+}
+}
+
+.plan-card.is-focused,
+.plan-card:hover {
+transform: translateY(-10px);
+background: rgba(255, 255, 255, .04);
+border-color: var(--brand-primary);
+filter: blur(0) grayscale(0) !important;
+opacity: 1 !important
+}
+
+.plan-card.expanded {
+z-index: 50 !important;
+transform: translateY(-10px) scale(1.05) !important;
+background: rgba(5, 5, 5, 0.98) !important;
+backdrop-filter: blur(30px) !important;
+border-color: var(--brand-primary) !important;
+box-shadow: 0 60px 150px rgba(0, 0, 0, 0.9) !important;
+min-height: 700px !important;
+height: auto !important;
+overflow-y: auto !important;
+max-height: 90vh !important;
+}
+
+.plan-tag {
+font-family: Inter, sans-serif;
+font-size: 10px;
+text-transform: uppercase;
+letter-spacing: .2em;
+color: var(--brand-primary);
+margin-bottom: 12px;
+font-weight: 800
+}
+
+.plan-title {
+font-size: 2.2rem;
+margin-bottom: 20px;
+letter-spacing: -1px;
+font-weight: 900
+}
+
+.plan-features {
+list-style: none;
+font-family: Inter, sans-serif;
+font-size: .9rem;
+color: rgba(255, 255, 255, .5);
+line-height: 2.2;
+margin-bottom: 25px;
+flex-grow: 1;
+text-align: left
+}
+
+.plan-features li {
+border-bottom: 1px solid rgba(255, 255, 255, .03);
+padding: 8px 0;
+display: flex;
+align-items: center
+}
+
+.plan-features li::before {
+content: "";
+width: 5px;
+height: 5px;
+background: var(--brand-primary);
+border-radius: 50%;
+margin-right: 12px;
+flex-shrink: 0
+}
+
+.btn-action {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+padding: 18px 35px;
+background: var(--brand-primary);
+color: #000;
+font-family: Inter, sans-serif;
+font-weight: 800;
+font-size: 13px;
+text-transform: uppercase;
+letter-spacing: .05em;
+text-decoration: none;
+border-radius: 50px 0 50px 50px;
+transition: all .3s ease;
+border: none;
+cursor: pointer
+}
+
+.plan-card .btn-action {
+background: rgba(255, 255, 255, .05);
+color: #fff;
+margin-top: 20px
+}
+
+.plan-card.is-focused .btn-action,
+.plan-card:hover .btn-action {
+background: var(--brand-primary);
+color: #000
+}
+
+.status-badge {
+display: inline-flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 30px;
+padding: 8px 15px;
+background: rgba(255, 255, 255, .04);
+border-radius: 40px 0 40px 40px;
+border: 1px solid var(--border-alpha)
+}
+
+.u-avatars {
+display: flex;
+align-items: center;
+margin-right: 5px
+}
+
+.u-avatar {
+width: 22px;
+height: 22px;
+border-radius: 50%;
+border: 2px solid var(--surface-dark);
+background-size: cover;
+margin-left: -8px
+}
+
+.u-avatar:first-child {
+margin-left: 0
+}
+
+#btn-up {
+position: fixed;
+bottom: 20px;
+right: 20px;
+width: 50px;
+height: 50px;
+background: var(--brand-primary);
+color: #000;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+z-index: 100;
+opacity: 0;
+visibility: hidden;
+transform: translateY(20px);
+transition: all .4s ease;
+box-shadow: 0 10px 30px rgba(0, 0, 0, .5);
+text-decoration: none
+}
+
+#btn-up.show {
+opacity: 1;
+visibility: visible;
+transform: translateY(0)
+}
+
+.reveal {
+opacity: 0;
+transform: translateY(30px);
+transition: all .8s cubic-bezier(.23, 1, .32, 1)
+}
+
+.reveal.active {
+opacity: 1;
+transform: translateY(0)
+}
+
+.legal-link {
+font-family: Inter, sans-serif;
+font-size: 11px;
+color: rgba(255, 255, 255, .4);
+text-decoration: none;
+text-transform: uppercase;
+letter-spacing: 1px;
+padding: 5px 10px
+}
+
+.input-group {
+border-bottom: 1px solid var(--border-alpha);
+margin-bottom: 20px;
+text-align: left
+}
+
+.input-group label {
+font-family: Inter;
+font-size: 9px;
+text-transform: uppercase;
+color: var(--brand-secondary);
+font-weight: 800;
+margin-bottom: 5px;
+display: block
+}
+
+.input-group input,
+.input-group select {
+width: 100%;
+padding: 10px 0;
+background: transparent !important;
+border: none;
+color: #fff !important;
+font-family: Inter, sans-serif;
+font-size: 15px;
+outline: 0
+}
+
+.input-group input:-webkit-autofill,
+.input-group input:-webkit-autofill:hover,
+.input-group input:-webkit-autofill:focus,
+.input-group input:-webkit-autofill:active {
+-webkit-text-fill-color: #fff !important;
+-webkit-box-shadow: 0 0 0px 1000px transparent inset !important;
+transition: background-color 5000s ease-in-out 0s;
+caret-color: #fff;
+}
+
+.input-group select option {
+background-color: var(--surface-dark);
+color: #fff;
+padding: 10px;
+}
+
+.honeypot {
+display: none !important
+}
+
+.legal-check {
+display: flex;
+align-items: flex-start;
+gap: 10px;
+margin: 20px 0;
+cursor: pointer;
+text-align: left
+}
+
+.legal-check input {
+accent-color: var(--brand-secondary);
+margin-top: 3px
+}
+
+.legal-check span {
+font-family: Inter;
+font-size: 10px;
+color: rgba(255, 255, 255, .4);
+text-transform: uppercase;
+line-height: 1.4
+}
+
+.toast-container {
+position: fixed;
+bottom: 20px;
+left: 50%;
+transform: translateX(-50%);
+z-index: 9999;
+width: 90%;
+max-width: 400px
+}
+
+.toast {
+background: rgba(10, 10, 10, .95);
+backdrop-filter: blur(10px);
+border: 1px solid var(--border-alpha);
+color: #fff;
+padding: 15px;
+border-radius: 15px 0 15px 15px;
+font-family: Inter;
+font-size: 12px;
+margin-top: 10px;
+display: flex;
+align-items: center;
+gap: 10px;
+opacity: 0;
+transform: translateY(10px);
+transition: all .4s ease
+}
+
+.toast.show {
+opacity: 1;
+transform: translateY(0)
+}
+
+/* Nuevos estilos para el título moderno */
+.modern-title {
+font-size: clamp(2rem, 8vw, 3.5rem);
+text-transform: uppercase;
+font-weight: 900;
+line-height: 1;
+margin-bottom: 10px;
+}
+
+.hashtag-line {
+font-family: Inter, sans-serif;
+font-size: 0.8rem;
+color: var(--brand-primary);
+text-transform: uppercase;
+letter-spacing: 3px;
+margin-bottom: 15px;
+font-weight: 800;
+}
+
+.highlight-limon {
+color: var(--brand-primary);
+background: linear-gradient(135deg, var(--brand-primary), var(--brand-secondary));
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+/* NUEVOS ESTILOS PARA PLANES EXPANDIBLES - CORREGIDOS */
+.plan-header {
+text-align: left;
+margin-bottom: 20px;
+}
+
+.plan-description {
+font-family: Inter, sans-serif;
+font-size: 0.85rem;
+line-height: 1.6;
+color: rgba(255, 255, 255, 0.6);
+margin-bottom: 20px;
+text-align: left;
+}
+
+.plan-subtitle {
+font-family: Inter, sans-serif;
+font-size: 0.8rem;
+text-transform: uppercase;
+letter-spacing: 1px;
+color: var(--brand-secondary);
+margin: 15px 0 10px;
+text-align: left;
+font-weight: 800;
+}
+
+.plan-highlight {
+background: rgba(246, 233, 107, 0.05);
+border-left: 3px solid var(--brand-primary);
+padding: 12px 15px;
+margin: 15px 0;
+border-radius: 0 8px 8px 0;
+text-align: left;
+}
+
+.plan-highlight h4 {
+font-family: Inter, sans-serif;
+font-size: 0.9rem;
+color: var(--brand-primary);
+margin-bottom: 5px;
+font-weight: 800;
+}
+
+.plan-highlight p {
+font-family: Inter, sans-serif;
+font-size: 0.8rem;
+color: rgba(255, 255, 255, 0.5);
+line-height: 1.5;
+}
+
+.plan-expand-btn {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: 8px;
+margin: 15px auto;
+padding: 12px 20px;
+background: transparent;
+border: 1px solid var(--border-alpha);
+color: rgba(255, 255, 255, 0.7);
+font-family: Inter, sans-serif;
+font-size: 0.75rem;
+text-transform: uppercase;
+letter-spacing: 1px;
+border-radius: 30px 0 30px 30px;
+cursor: pointer;
+transition: all 0.3s ease;
+width: 100%;
+max-width: 250px;
+}
+
+.plan-expand-btn:hover {
+background: rgba(255, 255, 255, 0.05);
+border-color: var(--brand-primary);
+color: var(--brand-primary);
+}
+
+.plan-expand-btn svg {
+transition: transform 0.3s ease;
+}
+
+.plan-expand-btn.expanded svg {
+transform: rotate(180deg);
+}
+
+/* CONTENIDO DE PLAN - CORREGIDO */
+.plan-content {
+display: flex;
+flex-direction: column;
+height: 100%;
+position: relative;
+z-index: 2;
+transition: opacity 0.3s ease;
+}
+
+.plan-card.expanded .plan-content {
+opacity: 0;
+pointer-events: none;
+}
+
+.plan-details {
+position: absolute;
+top: 40px;
+left: 30px;
+right: 30px;
+bottom: 30px;
+opacity: 0;
+transform: translateY(20px);
+pointer-events: none;
+overflow-y: auto;
+padding-right: 10px;
+transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+z-index: 1;
+}
+
+.plan-card.expanded .plan-details {
+opacity: 1;
+transform: translateY(0);
+pointer-events: all;
+z-index: 3;
+}
+
+/* Scrollbar personalizada para los detalles */
+.plan-details::-webkit-scrollbar {
+width: 6px;
+}
+
+.plan-details::-webkit-scrollbar-track {
+background: rgba(255, 255, 255, 0.05);
+border-radius: 3px;
+}
+
+.plan-details::-webkit-scrollbar-thumb {
+background: var(--brand-primary);
+border-radius: 3px;
+}
+
+.details-list {
+list-style: none;
+text-align: left;
+margin-bottom: 20px;
+}
+
+.details-list li {
+font-family: Inter, sans-serif;
+font-size: 0.85rem;
+color: rgba(255, 255, 255, 0.5);
+line-height: 1.6;
+padding: 8px 0;
+border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+display: flex;
+align-items: flex-start;
+}
+
+.details-list li:before {
+content: "✓";
+color: var(--brand-secondary);
+margin-right: 10px;
+font-weight: bold;
+flex-shrink: 0;
+}
+
+.plan-footer {
+margin-top: 25px;
+padding-top: 20px;
+border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.plan-audience {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 15px;
+}
+
+.plan-audience svg {
+color: var(--brand-primary);
+}
+
+.plan-audience p {
+font-family: Inter, sans-serif;
+font-size: 0.8rem;
+color: rgba(255, 255, 255, 0.4);
+text-align: left;
+}
+
+.badge-pro {
+background: var(--brand-primary);
+color: #000;
+padding: 2px 8px;
+border-radius: 4px;
+font-weight: 800;
+}
+
+/* Botón de cerrar para vista expandida */
+.close-details-btn {
+position: absolute;
+top: 15px;
+right: 15px;
+width: 30px;
+height: 30px;
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid var(--border-alpha);
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+cursor: pointer;
+color: rgba(255, 255, 255, 0.5);
+transition: all 0.3s ease;
+z-index: 10;
+}
+
+.close-details-btn:hover {
+background: var(--brand-primary);
+color: #000;
+border-color: var(--brand-primary);
+}
+
+/* COMPARADOR ULTRA MINIMALISTA - MEJORADO */
+.comparator-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 20px auto;
+    padding: 12px 24px;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: rgba(255, 255, 255, 0.6);
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 20px 0 20px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.comparator-btn:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--brand-primary);
+    color: var(--brand-primary);
+}
+
+.comparator-modal {
+    overflow-y: auto !important;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.98);
+    backdrop-filter: blur(5px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 20px;
+}
+
+.comparator-modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.comparator-content {
+    margin: auto;
+    background: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 15px 0 15px 15px;
+    width: 100%;
+    max-width: 95%;
+    overflow: scroll;
+    padding: 20px;
+    position: relative;
+    transform: translateY(10px);
+    transition: transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+    .comparator-content {
+        max-width: 90%;
+        padding: 25px;
+        max-height: 75vh;
+    }
+}
+
+@media (min-width: 1024px) {
+    .comparator-content {
+        max-width: 1000px;
+        padding: 30px;
+    }
+}
+
+.comparator-modal.active .comparator-content {
+    transform: translateY(0);
+}
+
+.close-comparator {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 28px;
+    height: 28px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease;
+    z-index: 100;
+}
+
+.close-comparator:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--brand-primary);
+    transform: rotate(90deg);
+}
+
+.comparator-title {
+    font-size: clamp(1rem, 3vw, 1.2rem);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 800;
+    color: var(--brand-primary);
+    letter-spacing: 1px;
+}
+
+/* COMPARADOR MINIMALISTA */
+.comparator-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 5px;
+    margin: 0 -5px;
+    padding: 0 5px;
+}
+
+.comparator-table {
+    width: 100%;
+    min-width: 550px;
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+@media (max-width: 767px) {
+    .comparator-table {
+        min-width: 500px;
+    }
+}
+
+.comparator-table th,
+.comparator-table td {
+    padding: 8px 6px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 0.75rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+@media (min-width: 768px) {
+    .comparator-table th,
+    .comparator-table td {
+        padding: 10px 8px;
+        font-size: 0.8rem;
+    }
+}
+
+/* HEADER FIJOS */
+.comparator-table thead th {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: rgba(5, 5, 5, 0.98);
+    backdrop-filter: blur(5px);
+    font-family: Inter, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.9);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 12px;
+    padding-bottom: 12px;
+}
+
+.comparator-table th:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 60;
+    background: rgba(5, 5, 5, 0.98);
+    text-align: left;
+    min-width: 150px;
+    backdrop-filter: blur(5px);
+}
+
+.comparator-table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 40;
+    background: rgba(5, 5, 5, 0.95);
+    text-align: left;
+    font-family: Inter, sans-serif;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+    min-width: 150px;
+    font-size: 0.75rem;
+}
+
+/* HEADER DE PLANES - SUPER MINIMALISTA */
+.plan-header-cell {
+    padding: 10px 6px !important;
+    text-align: center !important;
+    vertical-align: top;
+    border-bottom: none !important;
+    background: transparent !important;
+}
+
+.plan-header-cell.beta {
+    border: none;
+    position: relative;
+}
+
+/* BADGE POPULAR - MINIMALISTA */
+.beta-badge {
+    position: absolute;
+    top: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--brand-primary);
+    color: #000;
+    font-family: Inter, sans-serif;
+    font-size: 0.5rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 2px 6px;
+    border-radius: 8px 0 8px 8px;
+    z-index: 5;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    white-space: nowrap;
+}
+
+.plan-tag-cell {
+    font-family: Inter, sans-serif;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: rgba(255, 255, 255, 0.5);
+    font-weight: 600;
+    margin-bottom: 3px;
+}
+
+.plan-tag-cell.beta-tag {
+    color: var(--brand-primary);
+    font-weight: 700;
+}
+
+.plan-title-cell {
+    font-size: 0.9rem;
+    font-weight: 800;
+    margin-bottom: 2px;
+    color: #fff;
+}
+
+@media (min-width: 768px) {
+    .plan-title-cell {
+        font-size: 1rem;
+    }
+}
+
+/* CATEGORÍAS - MINIMALISTAS */
+.category-header {
+    background: rgba(255, 255, 255, 0.02) !important;
+    font-size: 0.65rem !important;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.4) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    font-weight: 600;
+    padding: 10px 6px !important;
+    position: sticky;
+    left: 0;
+    z-index: 30;
+}
+
+/* VALORES - MINIMALISTAS */
+.comparator-value {
+    font-family: Inter, sans-serif;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 0.75rem;
+    line-height: 1.3;
+}
+
+.comparator-value.check {
+    color: var(--brand-secondary);
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.comparator-value.none {
+    color: rgba(255, 255, 255, 0.2);
+    font-size: 0.7rem;
+}
+
+.comparator-value.number {
+    color: var(--brand-primary);
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+/* BOTONES - MINIMALISTAS */
+.comparator-cta-cell {
+    padding: 12px 6px !important;
+    text-align: center !important;
+    border-bottom: none !important;
+    background: transparent;
+}
+
+.btn-comparator {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.8);
+    font-family: Inter, sans-serif;
+    font-weight: 600;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    border-radius: 10px 0 10px 10px;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 120px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+    .btn-comparator {
+        padding: 8px 16px;
+        max-width: 130px;
+        font-size: 0.65rem;
+        border-radius: 12px 0 12px 12px;
+    }
+}
+
+.btn-comparator:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+    border-color: var(--brand-primary);
+    transform: translateY(-1px);
+}
+
+.btn-comparator.beta-btn {
+    background: rgba(246, 233, 107, 0.1);
+    color: var(--brand-primary);
+    border-color: rgba(246, 233, 107, 0.2);
+}
+
+.btn-comparator.beta-btn:hover {
+    background: rgba(246, 233, 107, 0.15);
+    border-color: var(--brand-primary);
+}
+
+/* SCROLLBAR PERSONALIZADA */
+.comparator-wrapper::-webkit-scrollbar {
+    height: 4px;
+    width: 4px;
+}
+
+.comparator-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 2px;
+}
+
+.comparator-wrapper::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.comparator-content::-webkit-scrollbar {
+    width: 4px;
+}
+
+.comparator-content::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 2px;
+}
+
+.comparator-content::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+/* INDICADOR DE SCROLL HORIZONTAL */
+.scroll-hint {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.3);
+    padding: 3px 6px;
+    border-radius: 8px 0 8px 8px;
+    font-family: Inter, sans-serif;
+    font-size: 0.55rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    display: none;
+    animation: pulse 2s infinite;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 0.4; }
+    50% { opacity: 0.7; }
+}
+
+@media (max-width: 767px) {
+    .scroll-hint {
+        display: block;
+    }
+}
+
+/* FOOTER DEL COMPARADOR */
+.comparator-footer {
+    margin-top: 15px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    font-family: Inter;
+    font-size: 0.6rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* RESPONSIVE - MENÚ MÓVIL CORREGIDO */
+@media (max-width: 768px) {
+.limon-nav {
+padding: 15px;
+}
+
+.nav-container {
+padding: 6px 12px;
+max-width: 95%;
+position: relative;
+}
+
+.nav-links {
+display: none;
+position: absolute;
+top: calc(100% + 10px);
+left: 0;
+width: 100%;
+background: rgba(5, 5, 5, 0.98);
+backdrop-filter: blur(20px);
+border: 1px solid var(--border-alpha);
+border-radius: 0 0 20px 20px;
+padding: 15px;
+flex-direction: column;
+gap: 10px;
+z-index: 1002;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.nav-links.active {
+display: flex;
+}
+
+.nav-link {
+padding: 12px 20px;
+text-align: center;
+border-radius: 15px 0 15px 15px;
+width: 100%;
+justify-content: center;
+}
+
+.nav-mobile-toggle {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+.section-indicator {
+display: none;
+}
+
+.plan-card {
+padding: 30px 20px;
+min-height: 480px;
+}
+
+.plan-card.expanded {
+min-height: 600px;
+max-height: 80vh;
+border-radius: 20px 0 20px 20px;
+}
+
+.plan-details {
+top: 25px;
+left: 20px;
+right: 20px;
+bottom: 20px;
+padding-right: 5px;
+}
+
+.app-container {
+padding: 30px 20px;
+}
+
+section {
+padding: 80px 20px 60px;
+min-height: 90vh;
+}
+
+/* Responsive para pestañas de servicios */
+.service-tab-btn {
+min-width: 160px;
+padding: 12px 20px;
+font-size: 0.8rem;
+}
+}
+
+/* Para tablets medianas */
+@media (min-width: 769px) and (max-width: 1024px) {
+.nav-links {
+gap: 6px;
+}
+
+.nav-link {
+padding: 8px 12px;
+font-size: 0.7rem;
+}
+
+.plan-card {
+padding: 30px 25px;
+}
+
+.service-tab-btn {
+min-width: 180px;
+padding: 12px 24px;
+}
+}
+</style>
+
+<!-- MENÚ FIJO - VERSIÓN CORREGIDA -->
+<nav class="limon-nav">
+<div class="nav-container">
+<a href="#" class="nav-logo">Limón</a>
+
+<!-- Botón hamburguesa móvil -->
+<button class="nav-mobile-toggle" id="mobile-toggle" aria-label="Menú">
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+  <span class="hamburger-line"></span>
+</button>
+<!-- Menú de navegación -->
+<div class="nav-links" id="nav-links">
+  <a href="#" class="nav-link active">Inicio</a>
+  <a href="#planes" class="nav-link">Servicios</a>
+  <a href="#join" class="nav-link career">
+    <svg fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="12" style="margin-right: 5px;">
+      <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+      <circle cx="9" cy="7" r="4"></circle>
+      <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"></path>
+    </svg>
+    Carreras
+  </a>
+  <a href="#contacto" class="nav-link">Contacto</a>
+</div>
+
+</div>
+</nav>
+
+<!-- INDICADOR DE SECCIÓN -->
+<div class="section-indicator">
+<div class="indicator-dot active" data-section="Inicio" data-target="#"></div>
+<div class="indicator-dot" data-section="Servicios" data-target="#planes"></div>
+<div class="indicator-dot" data-section="Contacto" data-target="#contacto"></div>
+<div class="indicator-dot" data-section="Carreras" data-target="#join"></div>
+</div>
+
+<div id=interactive-glow></div>
+<div id=right-click-alert style="position:fixed;padding:12px 20px;background:rgba(10,10,10,.9);border:1px solid var(--brand-primary);color:#fff;font-family:Inter;font-size:12px;border-radius:15px 0 15px 15px;pointer-events:none;opacity:0;z-index:10000;transition:all .3s ease;white-space:nowrap">
+<span>Limón</span> 🍋 Detalle cuidado
+</div>
+<div class=toast-container id=toast-container></div>
+<a href=# id=btn-up>
+<svg fill=none height=20 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=3 viewBox="0 0 24 24" width=20>
+<path d="m18 15-6-6-6 6" />
+</svg>
+</a>
+
+<!-- MODAL COMPARADOR MINIMALISTA -->
+<div class="comparator-modal" id="comparator-modal">
+    <div class="comparator-content">
+        <div class="close-comparator" id="close-comparator">
+            <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16">
+                <path d="M18 6 6 18M6 6l12 12"></path>
+            </svg>
+        </div>
+        
+        <h2 class="comparator-title">Comparador de Planes</h2>
+        
+        <div class="comparator-wrapper">
+            <table class="comparator-table">
+                <thead>
+                    <tr>
+                        <th>Características</th>
+                        <th class="plan-header-cell">
+                            <div class="plan-tag-cell">01 / Essential</div>
+                            <div class="plan-title-cell">Alfa</div>
+                        </th>
+                        <th class="plan-header-cell beta">
+                            <div class="beta-badge">POPULAR</div>
+                            <div class="plan-tag-cell beta-tag">02 / Pro</div>
+                            <div class="plan-title-cell">Beta</div>
+                        </th>
+                        <th class="plan-header-cell">
+                            <div class="plan-tag-cell">03 / Elite</div>
+                            <div class="plan-title-cell">Omega</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Diseño & Contenido -->
+                    <tr><td colspan="4" class="category-header">Diseño & Contenido</td></tr>
+                    <tr>
+                        <td>Diseños Profesionales</td>
+                        <td class="comparator-value number">8-10</td>
+                        <td class="comparator-value number">12-15</td>
+                        <td class="comparator-value number">15-20</td>
+                    </tr>
+                    <tr>
+                        <td>Reels Editados</td>
+                        <td class="comparator-value number">4</td>
+                        <td class="comparator-value number">8-10</td>
+                        <td class="comparator-value number">12-15</td>
+                    </tr>
+                    <tr>
+                        <td>Historias/Stories</td>
+                        <td class="comparator-value number">12-16</td>
+                        <td class="comparator-value number">20-25</td>
+                        <td class="comparator-value number">30-40</td>
+                    </tr>
+                    <tr>
+                        <td>Copys Estratégicos</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+
+                    <!-- Estrategia & Análisis -->
+                    <tr><td colspan="4" class="category-header">Estrategia & Análisis</td></tr>
+                    <tr>
+                        <td>Diagnóstico Estratégico</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Reporte Mensual</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Reporte Avanzado</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Inteligencia Competitiva</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+
+                    <!-- Gestión & Soporte -->
+                    <tr><td colspan="4" class="category-header">Gestión & Soporte</td></tr>
+                    <tr>
+                        <td>Community Management</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>WhatsApp 24/7</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Consultoría 1-on-1</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Reunión Estratégica</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+
+                    <!-- Sistemas Avanzados -->
+                    <tr><td colspan="4" class="category-header">Sistemas Avanzados</td></tr>
+                    <tr>
+                        <td>Embudo en Redes</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Lead Magnets</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Optimización Bioperfil</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Meta Ads Supervisada*</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Lab de Crecimiento</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Dashboard Ejecutivo</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+
+                    <!-- Público Objetivo -->
+                    <tr><td colspan="4" class="category-header">Para</td></tr>
+                    <tr>
+                        <td>Emprendedores/Freelancers</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value none">-</td>
+                    </tr>
+                    <tr>
+                        <td>PyMEs/Consultorías</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Empresas en Escala</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+
+                    <!-- Botones CTA -->
+                    <tr>
+                        <td class="comparator-cta-cell"></td>
+                        <td class="comparator-cta-cell">
+                            <a href="https://wa.me/+5491138078557?text=Hola%20Limón,%20quiero%20el%20plan%20ALFA" class="btn-comparator">Elegir Alfa</a>
+                        </td>
+                        <td class="comparator-cta-cell">
+                            <a href="https://wa.me/+5491138078557?text=Hola%20Limón,%20quiero%20el%20plan%20BETA" class="btn-comparator beta-btn">Elegir Beta</a>
+                        </td>
+                        <td class="comparator-cta-cell">
+                            <a href="https://wa.me/+5491138078557?text=Hola%20Limón,%20quiero%20el%20plan%20OMEGA" class="btn-comparator">Elegir Omega</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- Indicador de scroll para móvil -->
+            <div class="scroll-hint">
+                ← Desliza para ver más →
+            </div>
+        </div>
+        
+        <!-- Footer con nota -->
+        <div class="comparator-footer">
+            *Meta Ads Supervisada: Servicio gestionado en alianza.
+        </div>
+    </div>
+</div>
+
+<!-- MODAL COMPARADOR DISEÑO WEB -->
+<div class="comparator-modal" id="comparator-modal-web">
+    <div class="comparator-content">
+        <div class="close-comparator" id="close-comparator-web">
+            <svg fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="16">
+                <path d="M18 6 6 18M6 6l12 12"></path>
+            </svg>
+        </div>
+        
+        <h2 class="comparator-title">Comparador de Planes Web</h2>
+        
+        <div class="comparator-wrapper">
+            <table class="comparator-table">
+                <thead>
+                    <tr>
+                        <th>Características</th>
+                        <th class="plan-header-cell">
+                            <div class="plan-tag-cell">01 / Essential</div>
+                            <div class="plan-title-cell">Landing Page</div>
+                        </th>
+                        <th class="plan-header-cell beta">
+                            <div class="beta-badge">POPULAR</div>
+                            <div class="plan-tag-cell beta-tag">02 / Pro</div>
+                            <div class="plan-title-cell">Web Corporativa</div>
+                        </th>
+                        <th class="plan-header-cell">
+                            <div class="plan-tag-cell">03 / Elite</div>
+                            <div class="plan-title-cell">Web de Servicios</div>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Diseño & Desarrollo -->
+                    <tr><td colspan="4" class="category-header">Diseño & Desarrollo</td></tr>
+                    <tr>
+                        <td>Páginas/Secciones</td>
+                        <td class="comparator-value number">1 Página</td>
+                        <td class="comparator-value number">3-5 Páginas</td>
+                        <td class="comparator-value number">5-7+ Páginas</td>
+                    </tr>
+                    <tr>
+                        <td>Diseño Responsive</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>WordPress CMS</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Diseño Personalizado</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value number">Adaptado</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+
+                    <!-- Funcionalidades -->
+                    <tr><td colspan="4" class="category-header">Funcionalidades</td></tr>
+                    <tr>
+                        <td>Formulario de Contacto</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Integración WhatsApp</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Panel Administración</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Sistema de Reservas</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Comparador de Planes</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+
+                    <!-- SEO & Optimización -->
+                    <tr><td colspan="4" class="category-header">SEO & Optimización</td></tr>
+                    <tr>
+                        <td>SEO Básico</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>SEO Avanzado</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Optimización Velocidad</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Blog Integrado</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+
+                    <!-- Soporte & Entrega -->
+                    <tr><td colspan="4" class="category-header">Soporte & Entrega</td></tr>
+                    <tr>
+                        <td>Soporte Post-Entrega</td>
+                        <td class="comparator-value number">30 días</td>
+                        <td class="comparator-value number">60 días</td>
+                        <td class="comparator-value number">90 días</td>
+                    </tr>
+                    <tr>
+                        <td>Capacitación</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Dashboard de Gestión</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value none">-</td>
+                        <td class="comparator-value check">✓</td>
+                    </tr>
+
+                    <!-- Botones CTA -->
+                    <tr>
+                        <td class="comparator-cta-cell"></td>
+                        <td class="comparator-cta-cell">
+                            <a href="https://wa.me/+5491138078557?text=Hola%20Limón,%20quiero%20la%20Landing%20Page" class="btn-comparator">Consultar</a>
+                        </td>
+                        <td class="comparator-cta-cell">
+                            <a href="https://wa.me/+5491138078557?text=Hola%20Limón,%20quiero%20la%20Web%20Corporativa" class="btn-comparator beta-btn">Consultar</a>
+                        </td>
+                        <td class="comparator-cta-cell">
+                            <a href="https://wa.me/+5491138078557?text=Hola%20Limón,%20quiero%20la%20Web%20de%20Servicios" class="btn-comparator">Consultar</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <!-- Indicador de scroll para móvil -->
+            <div class="scroll-hint">
+                ← Desliza para ver más →
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="comparator-footer">
+            *Todos los planes incluyen hosting y dominio por 1 año (opcional)
+        </div>
+    </div>
+</div>
+
+
+
+
+<section>
+<div class="reveal app-container active">
+<header class=status-badge>
+<div class=u-avatars>
+<div class=u-avatar style="background-image:url(https://i.pravatar.cc/100?u=11)"></div>
+<div class=u-avatar style="background-image:url(https://i.pravatar.cc/100?u=12)"></div>
+<div class=u-avatar style="background-image:url(https://i.pravatar.cc/100?u=13)"></div>
+</div>
+<span style="font-family:Inter;font-size:9px;font-weight:800;color:rgba(255,255,255,.5);text-transform:uppercase;letter-spacing:1px">+50 marcas trabajaron con Limón</span>
+</header>
+<h1 class=hero-title>Tu marca<br><span>va a explotar</span></h1>
+<p class=hero-desc>Transformamos el flujo de datos en decisiones, la identidad visual en autoridad y la gestión de comunidades en activos escalables.</p>
+<a href=#planes class=btn-action>Ver Soluciones</a>
+</div>
+</section>
+
+<section id=planes style="display:block;text-align:center">
+<div class=reveal style=margin-bottom:50px>
+<h2 style="font-size:clamp(2rem,8vw,3rem);text-transform:uppercase;font-weight:900">Servicios</h2>
+<p style="font-family:Inter;color:rgba(255,255,255,.3);font-size:1rem">Elegí tu solución digital.
+</div>
+
+<!-- PESTAÑAS DE SERVICIOS -->
+<div style="display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; flex-wrap: wrap;">
+<button class="service-tab-btn active" data-tab="redes">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18" style="margin-right: 8px;">
+<path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+</svg>
+Gestión de Redes
+</button>
+<button class="service-tab-btn" data-tab="web">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="18" style="margin-right: 8px;">
+<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+<polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+<line x1="12" y1="22.08" x2="12" y2="12"></line>
+</svg>
+Diseño Web
+</button>
+</div>
+
+<!-- CONTENIDO DE GESTIÓN DE REDES (visible por defecto) -->
+<div class="service-content active" id="redes-content">
+<div class=pricing-grid id=pricing-grid>
+<!-- PLAN ALFA - GESTIÓN DE REDES -->
+<div class="reveal plan-card" id="plan-card-alfa">
+<div class=plan-content>
+<span class=plan-tag>01 / Essential</span>
+<h3 class=plan-title>Alfa</h3>
+<div class=plan-header>
+<p class=plan-description><strong>POSICIONAMIENTO ESTRUCTURADO</strong> - Para emprendedores y negocios nuevos que necesitan visibilidad y credibilidad desde el día uno.
+</div>
+<ul class=plan-features>
+<li>Diagnóstico Estratégico
+<li>Diseños Profesionales
+<li>Reels Estratégicos
+<li>Community Management
+</ul>
+<button class=plan-expand-btn data-plan="alfa">
+<span>Ver detalles del plan</span>
+<svg fill=none height=12 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=12>
+<path d="m6 9 6 6 6-6" />
+</svg>
+</button>
+<a href=https://wa.me/+5491138078557 class=btn-action>Comenzar</a>
+</div>
+
+<div class=plan-details id=plan-details-alfa>
+<div class=close-details-btn data-plan="alfa">
+<svg fill=none height=14 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=14>
+<path d="M18 6 6 18M6 6l12 12" />
+</svg>
+</div>
+<div class=plan-highlight>
+<h4>¿Estás empezando y tu marca es invisible en redes?</h4>
+<p>¿Publicás de forma irregular y no sabés qué decirle a tu audiencia?
+</div>
+<p class=plan-description>El Plan Alfa construye los cientos de tu presencia digital con estrategia. No es solo publicar: es crear una identidad de marca coherente que atraiga a tus clientes ideales y valide que tu producto tiene mercado.
+<h4 class=plan-subtitle>Este plan incluye:</h4>
+<ul class=details-list>
+<li><strong>Diagnóstico Estratégico Inicial</strong> – Análisis de competencia y definición de tu cliente ideal.
+<li><strong>Estrategia de 3 Pilares Temáticos</strong> – Contenido que educa, inspira y vende en la proporción correcta.
+<li><strong>8-10 Diseños Profesionales Mensuales</strong> – PlacAS únicas con tu identidad visual.
+<li><strong>4 Reels Estratégicos Editados</strong> – Videos diseñados para maximizar alcance orgánico.
+<li><strong>Programación y Community Management</strong> – Publicación en horarios óptimos y respuesta a tu comunidad.
+<li><strong>Reporte Mensual de Progreso</strong> – Seguimiento de crecimiento y engagement real.
+</ul>
+<div class=plan-footer>
+<div class=plan-audience>
+<svg fill=none height=16 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=16>
+<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+<circle cx=9 cy=7 r=4 />
+<path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+</svg>
+<p><strong>Ideal para:</strong> Emprendedores, freelancers, negocios locales que dan sus primeros pasos digitales.
+</div>
+<div class=plan-audience>
+<svg fill=none height=16 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=16>
+<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+</svg>
+<p><strong>Tu inversión se traduce en:</strong> Una base sólida para crecer, sin perder tiempo en tareas operativas.
+</div>
+</div>
+<div style="margin-top: 30px; text-align: center;">
+<a href=https://wa.me/+5491138078557 class=btn-action style="background: var(--brand-primary); color: #000; margin: 0 auto;">Comenzar con Alfa</a>
+</div>
+</div>
+</div>
+
+<!-- PLAN BETA - GESTIÓN DE REDES -->
+<div class="reveal plan-card" id="plan-card-beta">
+<div class=plan-content>
+<span class="plan-tag badge-pro">02 / Pro</span>
+<h3 class=plan-title>Beta</h3>
+<div class=plan-header>
+<p class=plan-description><strong>CONVERSIÓN Y SISTEMA</strong> - Para PyMEs con presencia en redes que no logran transformar likes en ventas.
+</div>
+<ul class=plan-features>
+<li>Embudo en Redes Orgánicas
+<li>Lead Magnets para Instagram
+<li>Reels de Conversión
+<li>Reporte Avanzado
+</ul>
+<button class=plan-expand-btn data-plan="beta">
+<span>Ver detalles del plan</span>
+<svg fill=none height=12 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=12>
+<path d="m6 9 6 6 6-6" />
+</svg>
+</button>
+<a href=https://wa.me/+5491138078557 class=btn-action>Comenzar</a>
+</div>
+
+<div class=plan-details id=plan-details-beta>
+<div class=close-details-btn data-plan="beta">
+<svg fill=none height=14 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=14>
+<path d="M18 6 6 18M6 6l12 12" />
+</svg>
+</div>
+<div class=plan-highlight>
+<h4>¿Tenés seguidores pero pocas consultas?</h4>
+<p>¿Tu contenido no genera la reacción que esperás? El problema no es la frecuencia, es la estrategia.
+</div>
+<p class=plan-description>El Plan Beta implementa un sistema de conversión orgánico que transforma tu perfil en un canal de captación. Nos enfocamos en guiar a tu audiencia desde el descubrimiento hasta la acción concreto, sin depender de publicidad paga.
+<h4 class=plan-subtitle>Este plan incluye:</h4>
+<ul class=details-list>
+<li><strong>Todo lo del Plan ALFA, más...</strong>
+<li><strong>Estrategia de Embudo en Redes Orgánicas</strong> – Contenido diseñado específicamente para cada etapa del cliente.
+<li><strong>Diseño de Lead Magnets para Instagram</strong> – Recursos de alto valor (guías, templates) que captan leads directamente en tus redes.
+<li><strong>8-10 Reels de Conversión Mensuales</strong> – Videos con narrativas persuasivas y CTAs estratégicos.
+<li><strong>12-15 Diseños de Alto Impacto</strong> – Gráficos que educan, demuestran valor y llevan a la acción.
+<li><strong>Optimización de Bioperfil y Enlaces</strong> – Convertimos tu perfil en una landing page que vende 24/7.
+<li><strong>Reporte Avanzado de Conversión</strong> – Métricas de leads generados, interacciones calificadas y tasa de respuesta.
+</ul>
+<div class=plan-footer>
+<div class=plan-audience>
+<svg fill=none height=16 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=16>
+<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+<circle cx=9 cy=7 r=4 />
+<path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+</svg>
+<p><strong>Ideal para:</strong> Consultorías, estudios profesionales, comercios con catálogo digital, servicios locales establecidos.
+</div>
+<div class=plan-audience>
+<svg fill=none height=16 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=16>
+<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+</svg>
+<p><strong>Tu inversión se traduce en:</strong> Un sistema replicable que genera oportunidades de venta de forma consistente.
+</div>
+</div>
+<div style="margin-top: 30px; text-align: center;">
+<a href=https://wa.me/+5491138078557 class=btn-action style="background: var(--brand-primary); color: #000; margin: 0 auto;">Comenzar con Beta</a>
+</div>
+</div>
+</div>
+
+<!-- PLAN OMEGA - GESTIÓN DE REDES -->
+<div class="reveal plan-card" id="plan-card-omega">
+<div class=plan-content>
+<span class=plan-tag>03 / Elite</span>
+<h3 class=plan-title>Omega</h3>
+<div class=plan-header>
+<p class=plan-description><strong>DOMINIO ESTRATÉGICO</strong> - Para marcas que buscan liderar su categoría y escalar con inteligencia.
+</div>
+<ul class=plan-features>
+<li>Inteligencia Competitiva
+<li>Meta Ads Supervisada
+<li>Lab de Crecimiento
+<li>Dashboard Ejecutivo
+</ul>
+<button class=plan-expand-btn data-plan="omega">
+<span>Ver detalles del plan</span>
+<svg fill=none height=12 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=12>
+<path d="m6 9 6 6 6-6" />
+</svg>
+</button>
+<a href=https://wa.me/+5491138078557 class=btn-action>Comenzar</a>
+</div>
+
+<div class=plan-details id=plan-details-omega>
+<div class=close-details-btn data-plan="omega">
+<svg fill=none height=14 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=14>
+<path d="M18 6 6 18M6 6l12 12" />
+</svg>
+</div>
+<div class=plan-highlight>
+<h4>¿Tu competencia está invirtiendo en publicidad y te está dejando atrás?</h4>
+<p>¿Necesitás no solo gestionar, sino dominar el juego digital con una ventaja competitiva clara?
+</div>
+<p class=plan-description>El Plan Omega es una alianza estratégica de crecimiento. No solo gestionamos tus redes: te proveemos inteligencia de mercado, análisis predictivo y ejecutamos campañas de aceleración controladas para posicionarte como referente indiscutido.
+<h4 class=plan-subtitle>Este plan incluye:</h4>
+<ul class=details-list>
+<li><strong>Todo lo del Plan BETA, más estos PILARES EXCLUSIVOS:</strong>
+</ul>
+<div class=plan-highlight>
+<h4>1. INTELIGENCIA COMPETITIVA ACTIVA:</h4>
+<p>Monitoreo y análisis semanal de las estrategias de tus 3 principales competidores. Reportes de oportunidades tácticas: qué están haciendo ellos que vos podés hacer mejor.
+</div>
+<div class=plan-highlight>
+<h4>2. ACELERACIÓN CON META ADS SUPERVISADA*:</h4>
+<p>(*Servicio gestionado en alianza con especialista certificado) Estrategia de contenidos diseñada específicamente para ser potenciada con ads. Supervisión y dirección de campañas para asegurar que cada peso invertido maximice tu visibilidad hacia tu audiencia ideal.
+</div>
+<div class=plan-highlight>
+<h4>3. SISTEMA DE EXPERIMENTACIÓN (LAB DE CRECIMIENTO):</h4>
+<p>Diseño y ejecución de 2 tests A/B mensuales en formatos, copy y estrategias de contenido. Documentación de aprendizajes para escalar solo lo que funciona.
+</div>
+<div class=plan-highlight>
+<h4>4. DASHBOARD EJECUTIVO DE IMPACTO:</h4>
+<p>Panel personalizado que vincula la actividad en redes con indicadores de negocio. Reunión estratégica mensual para tomar decisiones basadas en datos, no en intuición.
+</div>
+<div class=plan-footer>
+<div class=plan-audience>
+<svg fill=none height=16 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=16>
+<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+<circle cx=9 cy=7 r=4 />
+<path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+</svg>
+<p><strong>Ideal para:</strong> Empresas en etapa de escala, marcas que aspiran a liderazgo, negocios en mercados competitivos que necesitan una ventaja clara.
+</div>
+<div class=plan-audience>
+<svg fill=none height=16 stroke=currentColor stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width=16>
+<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+</svg>
+<p><strong>Tu inversión se traduce en:</strong> Una ventaja competitiva sostenible, toma de decisiones informada y un partner de crecimiento, no un proveedor de servicios.
+</div>
+</div>
+<div style="margin-top: 30px; text-align: center;">
+<a href=https://wa.me/+5491138078557 class=btn-action style="background: var(--brand-primary); color: #000; margin: 0 auto;">Comenzar con Omega</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- BOTÓN COMPARADOR MINIMALISTA -->
+<div style="grid-column: 1 / -1; margin-top: 40px; text-align: center;">
+    <button class="comparator-btn reveal" id="open-comparator-redes">
+        <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14">
+            <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"></path>
+        </svg>
+        Comparar planes
+    </button>
+</div>
+
+<!-- CONTENIDO DE DISEÑO WEB (oculto por defecto) -->
+<div class="service-content" id="web-content">
+<div class=pricing-grid>
+<!-- PLAN LANDING PAGE -->
+<div class="reveal plan-card" id="plan-card-landing">
+<div class=plan-content>
+<span class="plan-tag badge-pro">01 / Essential</span>
+<h3 class=plan-title>Landing Page</h3>
+<div class=plan-header>
+<p class=plan-description><strong>CONVERSIÓN DIRECTA</strong> - Una página enfocada en convertir visitantes en clientes. Ideal para promociones específicas, lanzamientos o captación de leads.
+</div>
+<ul class="plan-features">
+<li>Diseño profesional personalizado</li>
+<li>Estructura fluida de alto impacto</li>
+<li>Secciones estratégicas adaptables</li>
+<li>Formulario de contacto o WhatsApp</li>
+</ul>
+<button class=plan-expand-btn data-plan="landing">
+<span>Ver detalles del plan</span>
+<svg fill=none height=12 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=12>
+<path d="m6 9 6 6 6-6" />
+</svg>
+</button>
+<a href=https://wa.me/+5491138078557?text=Hola%20Limón,%20quiero%20la%20Landing%20Page class=btn-action>Consultar</a>
+</div>
+
+<div class=plan-details id=plan-details-landing>
+<div class=close-details-btn data-plan="landing">
+<svg fill=none height=14 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=14>
+<path d="M18 6 6 18M6 6l12 12" />
+</svg>
+</div>
+<div class=plan-highlight>
+<h4>¿Necesitás una página web rápida y efectiva?</h4>
+<p>¿Querés convertir visitantes en clientes sin distracciones?
+</div>
+<p class=plan-description>La Landing Page es la solución perfecta para campañas específicas. Una única página diseñada para guiar al visitante hacia una acción concreta: comprar, suscribirse o contactarte.
+<h4 class=plan-subtitle>Este plan incluye:</h4>
+<ul class=details-list>
+<li><strong>Una página Home</strong> – Diseño moderno y responsive</li>
+<li><strong>4 secciones estratégicas</strong> – Hero, servicios, beneficios y contacto</li>
+<li><strong>Plantilla premium o builder</strong> – Estructura profesional</li>
+<li><strong>Formulario de contacto básico</strong> – Integrado y funcional</li>
+<li><strong>Integración con WhatsApp</strong> – Botón directo de contacto</li>
+<li><strong>Responsive completo</strong> – Optimizado para móvil y desktop</li>
+<li><strong>Carga inicial de contenido</strong> – Texto + imágenes del cliente</li>
+<li><strong>SEO básico implementado</strong> – Meta tags y optimización inicial</li>
+<li><strong>Entrega funcionando</strong> – Lista para usar y publicar</li>
+<li><strong>Soporte por 30 días</strong> – Ayuda post-entrega</li>
+</ul>
+<div class=plan-footer>
+<div class=plan-audience>
+<svg fill=none height=16 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=16>
+<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+<circle cx=9 cy=7 r=4 />
+<path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+</svg>
+<p><strong>Ideal para:</strong> Emprendedores, freelancers, lanzamientos de producto, campañas específicas, servicios puntuales</p>
+</div>
+<div class=plan-audience>
+<svg fill=none height=16 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=16>
+<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+</svg>
+<p><strong>Tu inversión se traduce en:</strong> Una herramienta de conversión inmediata, sin mantenimiento complejo</p>
+</div>
+</div>
+<div style="margin-top: 30px; text-align: center;">
+<a href="https://wa.me/+5491138078557?text=Hola%20Limón,%20quiero%20la%20Landing%20Page" class=btn-action style="background: var(--brand-primary); color: #000; margin: 0 auto;">Consultar Landing Page</a>
+</div>
+</div>
+</div>
+
+<!-- PLAN WEB CORPORATIVA -->
+<div class="reveal plan-card" id="plan-card-corporativa">
+<div class=plan-content>
+<span class=plan-tag>02 / Pro</span>
+<h3 class=plan-title>Web Corporativa</h3>
+<div class=plan-header>
+<p class=plan-description><strong>PRESENCIA COMPLETA</strong> - Un sitio web profesional con varias páginas para mostrar tu negocio de manera completa y organizada.
+</div>
+<ul class=plan-features>
+<li>3-5 páginas/secciones</li>
+<li>WordPress instalado</li>
+<li>Diseño profesional</li>
+<li>Panel de administración</li>
+</ul>
+<button class=plan-expand-btn data-plan="corporativa">
+<span>Ver detalles del plan</span>
+<svg fill=none height=12 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=12>
+<path d="m6 9 6 6 6-6" />
+</svg>
+</button>
+<a href=https://wa.me/+5491138078557?text=Hola%20Limón,%20quiero%20la%20Web%20Corporativa class=btn-action>Consultar</a>
+</div>
+
+<div class=plan-details id=plan-details-corporativa>
+<div class=close-details-btn data-plan="corporativa">
+<svg fill=none height=14 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=14>
+<path d="M18 6 6 18M6 6l12 12" />
+</svg>
+</div>
+<div class=plan-highlight>
+<h4>¿Necesitás una web completa para tu negocio?</h4>
+<p>¿Querés mostrar servicios, equipo, testimonios y facilitar el contacto?
+</div>
+<p class=plan-description>La Web Corporativa es tu carta de presentación digital. Un sitio profesional que transmite confianza y permite a tus clientes conocerte mejor antes de contactarte. Incluye sistema de gestión de contenido para que actualices tu web fácilmente.
+<h4 class=plan-subtitle>Este plan incluye:</h4>
+<ul class=details-list>
+<li><strong>3–5 secciones/páginas</strong> – Inicio, Servicios, Nosotros, Contacto, Blog/Noticias</li>
+<li><strong>WordPress instalado y configurado</strong> – Panel de administración fácil de usar</li>
+<li><strong>Diseño profesional responsive</strong> – Plantilla premium adaptada a tu marca</li>
+<li><strong>Formulario de contacto avanzado</strong> – Integrado con validación y notificaciones</li>
+<li><strong>Integración completa</strong> – WhatsApp, redes sociales, mapas, calendario</li>
+<li><strong>Panel de administración</strong> – Gestioná contenido sin programar</li>
+<li><strong>Optimización SEO completa</strong> – Meta tags, sitemap, velocidad optimizada</li>
+<li><strong>Galeria de imágenes/videos</strong> – Muestra tu trabajo profesionalmente</li>
+<li><strong>Testimonios integrados</strong> – Muestra la confianza de tus clientes</li>
+<li><strong>Capacitación incluida</strong> – Te enseñamos a usar el panel</li>
+<li><strong>Soporte por 60 días</strong> – Ayuda post-entrega extendida</li>
+</ul>
+<div class=plan-footer>
+<div class=plan-audience>
+<svg fill=none height=16 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=16>
+<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+<circle cx=9 cy=7 r=4 />
+<path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+</svg>
+<p><strong>Ideal para:</strong> PyMEs, consultorías, profesionales independientes, negocios locales, estudios creativos</p>
+</div>
+<div class=plan-audience>
+<svg fill=none height=16 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=16>
+<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+</svg>
+<p><strong>Tu inversión se traduce en:</strong> Una presencia digital profesional que crece con tu negocio</p>
+</div>
+</div>
+<div style="margin-top: 30px; text-align: center;">
+<a href="https://wa.me/+5491138078557?text=Hola%20Limón,%20quiero%20la%20Web%20Corporativa" class=btn-action style="background: var(--brand-primary); color: #000; margin: 0 auto;">Consultar Web Corporativa</a>
+</div>
+</div>
+</div>
+
+<!-- PLAN WEB DE SERVICIOS -->
+<div class="reveal plan-card" id="plan-card-servicios">
+<div class=plan-content>
+<span class=plan-tag>03 / Elite</span>
+<h3 class=plan-title>Web de Servicios</h3>
+<div class=plan-header>
+<p class=plan-description><strong>SISTEMA COMPLETO</strong> - Orientado a la explicación y contratación de servicios, con funcionalidades avanzadas de captación.
+</div>
+<ul class=plan-features>
+<li>Servicios / Planes detallados</li>
+<li>Sistema de reservas/citas</li>
+<li>Preguntas frecuentes avanzadas</li>
+<li>Dashboard de gestión</li>
+</ul>
+<button class=plan-expand-btn data-plan="servicios">
+<span>Ver detalles del plan</span>
+<svg fill=none height=12 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=12>
+<path d="m6 9 6 6 6-6" />
+</svg>
+</button>
+<a href=https://wa.me/+5491138078557?text=Hola%20Limón,%20quiero%20la%20Web%20de%20Servicios class=btn-action>Consultar</a>
+</div>
+
+<div class=plan-details id=plan-details-servicios>
+<div class=close-details-btn data-plan="servicios">
+<svg fill=none height=14 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=14>
+<path d="M18 6 6 18M6 6l12 12" />
+</svg>
+</div>
+<div class=plan-highlight>
+<h4>¿Necesitás algo más que una web estándar?</h4>
+<p>¿Ofrecés servicios complejos que requieren explicación detallada y sistema de contratación?
+</div>
+<p class=plan-description>La Web de Servicios es una solución completa para negocios basados en servicios. No solo muestra tu oferta, sino que educa al cliente, compara planes y facilita la contratación con sistemas avanzados.
+<h4 class=plan-subtitle>Este plan incluye:</h4>
+<ul class=details-list>
+<li><strong>Todo lo del plan CORPORATIVA, más...</strong></li>
+<li><strong>5-7+ páginas estratégicas</strong> – Inicio, Servicios detallados, Comparador de planes, Casos de éxito, Blog, Contacto avanzado</li>
+<li><strong>Diseño 100% personalizado</strong> – Creado desde cero para tu marca y procesos</li>
+<li><strong>Sistema de comparación de planes</strong> – Tabla interactiva para ayudar a elegir</li>
+<li><strong>Formularios avanzados</strong> – Presupuestos personalizados, solicitud de consultas</li>
+<li><strong>Integración con calendario</strong> – Sistema de reservas o agendamiento</li>
+<li><strong>Preguntas frecuentes interactivas</strong> – Sistema de acordeón para resolver dudas</li>
+<li><strong>Dashboard de gestión</strong> – Panel para ver leads y consultas</li>
+<li><strong>Integraciones avanzadas</strong> – CRM, email marketing, pasarelas de pago</li>
+<li><strong>Blog profesional</strong> – Sistema para publicar artículos de autoridad</li>
+<li><strong>SEO avanzado + blog strategy</strong> – Plan de contenido para posicionamiento</li>
+<li><strong>Analytics & tracking</strong> – Seguimiento de conversiones y comportamiento</li>
+<li><strong>Soporte por 90 días</strong> – Mantenimiento y optimización extendida</li>
+</ul>
+<div class=plan-footer>
+<div class=plan-audience>
+<svg fill=none height=16 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=16>
+<path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+<circle cx=9 cy=7 r=4 />
+<path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" />
+</svg>
+<p><strong>Ideal para:</strong> Consultorías especializadas, agencias de marketing, servicios B2B, coaches, profesionales de alta gama</p>
+</div>
+<div class=plan-audience>
+<svg fill=none height=16 stroke=currentColor stroke-linecap=round stroke-linejoin=round stroke-width=2 viewBox="0 0 24 24" width=16>
+<path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+</svg>
+<p><strong>Tu inversión se traduce en:</strong> Un sistema de captación y conversión que funciona 24/7</p>
+</div>
+</div>
+<div style="margin-top: 30px; text-align: center;">
+<a href="https://wa.me/+5491138078557?text=Hola%20Limón,%20quiero%20la%20Web%20de%20Servicios" class=btn-action style="background: var(--brand-primary); color: #000; margin: 0 auto;">Consultar Web de Servicios</a>
+</div>
+</div>
+</div>
+</div>
+
+<!-- BOTÓN COMPARADOR PARA DISEÑO WEB -->
+<div style="grid-column: 1 / -1; margin-top: 40px; text-align: center;">
+    <button class="comparator-btn reveal" id="open-comparator-web">
+        <svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="14">
+            <path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"></path>
+        </svg>
+        Comparar planes de Diseño Web
+    </button>
+</div>
+</div>
+</section>
+
+<!-- SECCIÓN CONTACTO -->
+<section id=contacto style="padding: 80px 20px;">
+<div class="reveal app-container" style="max-width: 600px;">
+<div class=hashtag-line>#CONTACTO</div>
+<h2 class=modern-title>Contacto</h2>
+<p style="font-family: Inter; color: rgba(255,255,255,.4); margin-bottom: 40px; font-size: .9rem; text-align: center;">
+Comunicate con nosotros de forma rápida y sin burocracia
+</p>
+<div style="display: flex; flex-direction: column; gap: 20px; margin-top: 30px;">
+  <!-- Botón de WhatsApp - CORREGIDO -->
+  <a href="https://wa.me/+5491138078557?text=Hola%20Lim%C3%B3n,%20quiero%20una%20consulta%20gratuita%20sobre%20gesti%C3%B3n%20de%20redes" 
+     class="btn-action" 
+     style="background: rgba(37, 211, 102, 0.1); color: #25D366; border: 1px solid rgba(37, 211, 102, 0.3); justify-content: center; gap: 10px;">
+    <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20">
+      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+    </svg>
+    WhatsApp
+  </a>
+
+  <!-- Botón de Email - CORREGIDO -->
+  <a href="mailto:diego@limondigital.com.ar?subject=Consulta%20Lim%C3%B3n%20Digital&body=Hola%20Lim%C3%B3n,%20quiero%20m%C3%A1s%20informaci%C3%B3n%20sobre%20sus%20servicios" 
+     class="btn-action" 
+     style="background: rgba(246, 233, 107, 0.1); color: var(--brand-primary); border: 1px solid rgba(246, 233, 107, 0.3); justify-content: center; gap: 10px;">
+    <svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="20">
+      <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+      <polyline points="22,6 12,13 2,6"></polyline>
+    </svg>
+    Email: diego@limondigital.com.ar
+  </a>
+</div>
+
+<div style="margin-top: 40px; padding-top: 30px; border-top: 1px solid var(--border-alpha); text-align: center;">
+<p style="font-family: Inter; color: rgba(255,255,255,0.4); font-size: 0.8rem;">
+Te respondemos en minutos, sin formularios ni esperas.
+</p>
+</div>
+</div>
+</section>
+
+<section id=join>
+<div class="reveal app-container" style="max-width:850px;border-radius:0 40px 0 40px;border-color:var(--brand-secondary)">
+<div class=hashtag-line>#TEAMTECH</div>
+<h2 class=modern-title>¿Querés ser parte<br>del <span class=highlight-limon>proyecto Limón</span>?</h2>
+<p style="font-family:Inter;color:rgba(255,255,255,.4);margin-bottom:40px;font-size:.9rem">Postulate y nos comunicaremos con vos.
+<form id=talent-form style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;text-align:left">
+<input class=honeypot name=user_verification tabindex=-1 autocomplete=off>
+<div class=input-group>
+<label>Nombre</label>
+<input name=Nombre placeholder="Tu nombre" required autocomplete=off>
+</div>
+<div class=input-group>
+<label>Email</label>
+<input name=Email placeholder="Tu email" required type=email autocomplete=off>
+</div>
+<div class=input-group>
+<label>WhatsApp</label>
+<input name=WhatsApp placeholder="+54 9..." type=tel autocomplete=off>
+</div>
+<div class=input-group>
+<label>Área</label>
+<select name=Area required>
+<option value="" disabled selected>Seleccioná tu especialidad</option>
+<option value="Community Manager">Community Manager</option>
+<option value="Data Analytics">Data Analytics</option>
+<option value="Programador">Programador</option>
+<option value="Web Master">Web Master</option>
+<option value="Data Entry">Data Entry</option>
+</select>
+</div>
+<div style="grid-column:1/-1;text-align:center">
+<label class=legal-check>
+<input type=checkbox required> <span>Acepto política de privacidad</span>
+</label>
+<button class=btn-action id=btn-submit style="width:100%;max-width:350px;background:var(--brand-secondary);color:#000" type=submit>Enviar</button>
+</div>
+</form>
+</div>
+</section>
+
+<footer style="padding:60px 20px;background:rgba(0,0,0,.5);border-top:1px solid var(--border-alpha);text-align:center">
+<div style="display:flex;flex-direction:column;gap:30px">
+<div style="display:flex;gap:15px;flex-wrap:wrap;justify-content:center">
+<a href=# class=legal-link>Términos</a> <a href=# class=legal-link>Privacidad</a>
+</div>
+<p style="font-family:Inter;font-size:10px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:2px">© DESARROLLADO POR DIEGO | LIMÓN PROYECTO DIGITAL
+</div>
+</footer>
+
+<script>
+// MENÚ MÓVIL - VERSIÓN CORREGIDA Y MEJORADA
+document.addEventListener('DOMContentLoaded', function() {
+const navLinks = document.querySelectorAll('.nav-link');
+const indicatorDots = document.querySelectorAll('.indicator-dot');
+const mobileToggle = document.getElementById('mobile-toggle');
+const navMenu = document.getElementById('nav-links');
+// 1. TOGGLE DEL MENÚ MÓVIL - VERSIÓN MEJORADA
+if (mobileToggle && navMenu) {
+    mobileToggle.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const isActive = navMenu.classList.contains('active');
+
+        // Alternar menú
+        navMenu.classList.toggle('active');
+        mobileToggle.classList.toggle('active');
+
+        // Prevenir scroll cuando el menú está abierto
+        if (!isActive) {
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'auto';
+        }
+    });
+
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', function(e) {
+        if (navMenu.classList.contains('active') &&
+            !navMenu.contains(e.target) &&
+            e.target !== mobileToggle &&
+            !mobileToggle.contains(e.target)) {
+            closeMobileMenu();
+        }
+    });
+
+    // Cerrar menú al hacer clic en un link
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 768) {
+                closeMobileMenu();
+            }
+        });
+    });
+
+    // Función para cerrar el menú móvil
+    function closeMobileMenu() {
+        navMenu.classList.remove('active');
+        mobileToggle.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Cerrar menú al cambiar tamaño de ventana
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+            closeMobileMenu();
+        }
+    });
+}
+
+// 2. NAVEGACIÓN SUAVE
+navLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+
+        if (targetId === '#') {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        } else {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const offsetTop = targetElement.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
+
+// 3. INDICADORES DE SECCIÓN
+indicatorDots.forEach(dot => {
+    dot.addEventListener('click', function() {
+        const targetId = this.getAttribute('data-target');
+
+        if (targetId === '#') {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        } else {
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const offsetTop = targetElement.offsetTop - 80;
+                window.scrollTo({
+                    top: offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+    });
+});
+
+// 4. ACTUALIZAR MENÚ AL SCROLL
+function updateActiveMenu() {
+    const scrollPosition = window.scrollY + 100;
+    let activeSection = '';
+    const sections = ['inicio', 'planes', 'contacto', 'join'];
+
+    // Si estamos en el inicio
+    if (scrollPosition < 500) {
+        activeSection = 'inicio';
+    } else {
+        sections.forEach(section => {
+            const element = document.getElementById(section);
+            if (element) {
+                const offsetTop = element.offsetTop;
+                const offsetHeight = element.offsetHeight;
+
+                if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
+                    activeSection = section;
+                }
+            }
+        });
+    }
+
+    // Actualizar links del menú
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        const href = link.getAttribute('href');
+
+        if (href === '#' && activeSection === 'inicio') {
+            link.classList.add('active');
+        } else if (href === `#${activeSection}`) {
+            link.classList.add('active');
+        }
+    });
+
+    // Actualizar indicadores
+    indicatorDots.forEach(dot => {
+        dot.classList.remove('active');
+        const target = dot.getAttribute('data-target');
+        if (target === '#' && activeSection === 'inicio') {
+            dot.classList.add('active');
+        } else if (target === `#${activeSection}`) {
+            dot.classList.add('active');
+        }
+    });
+}
+
+window.addEventListener('scroll', updateActiveMenu);
+window.addEventListener('load', updateActiveMenu);
+});
+
+// LÓGICA CORREGIDA PARA "VER DETALLES DEL PLAN"
+document.addEventListener('DOMContentLoaded', function() {
+const expandButtons = document.querySelectorAll('.plan-expand-btn');
+const closeButtons = document.querySelectorAll('.close-details-btn');
+// Función para expandir un plan
+function expandPlan(planId) {
+    // Cerrar todos los planes primero
+    document.querySelectorAll('.plan-card').forEach(card => {
+        card.classList.remove('expanded');
+    });
+
+    // Expandir el plan seleccionado
+    const card = document.getElementById(`plan-card-${planId}`);
+    const expandBtn = document.querySelector(`.plan-expand-btn[data-plan="${planId}"]`);
+    const details = document.getElementById(`plan-details-${planId}`);
+
+    if (card && expandBtn && details) {
+        card.classList.add('expanded');
+        expandBtn.classList.add('expanded');
+        expandBtn.innerHTML = '<span>Ocultar detalles</span><svg fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="12"><path d="m6 9 6 6 6-6" /></svg>';
+
+        // Asegurar que los detalles sean visibles
+        details.style.opacity = '1';
+        details.style.transform = 'translateY(0)';
+        details.style.pointerEvents = 'all';
+        details.style.zIndex = '3';
+
+        // Ocultar el contenido principal
+        const content = card.querySelector('.plan-content');
+        if (content) {
+            content.style.opacity = '0';
+            content.style.pointerEvents = 'none';
+        }
+
+        // Hacer scroll suave al plan expandido
+        setTimeout(() => {
+            card.scrollIntoView({
+                behavior: 'smooth',
+                block: 'center'
+            });
+        }, 300);
+    }
+}
+
+// Función para cerrar un plan
+function closePlan(planId) {
+    const card = document.getElementById(`plan-card-${planId}`);
+    const expandBtn = document.querySelector(`.plan-expand-btn[data-plan="${planId}"]`);
+    const details = document.getElementById(`plan-details-${planId}`);
+
+    if (card && expandBtn && details) {
+        card.classList.remove('expanded');
+        expandBtn.classList.remove('expanded');
+        expandBtn.innerHTML = '<span>Ver detalles del plan</span><svg fill="none" height="12" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="12"><path d="m6 9 6 6 6-6" /></svg>';
+
+        // Ocultar los detalles
+        details.style.opacity = '0';
+        details.style.transform = 'translateY(20px)';
+        details.style.pointerEvents = 'none';
+        details.style.zIndex = '1';
+
+        // Mostrar el contenido principal
+        const content = card.querySelector('.plan-content');
+        if (content) {
+            content.style.opacity = '1';
+            content.style.pointerEvents = 'all';
+        }
+    }
+}
+
+// Event listeners para botones de expandir
+expandButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const planId = this.getAttribute('data-plan');
+        const card = document.getElementById(`plan-card-${planId}`);
+
+        if (card.classList.contains('expanded')) {
+            closePlan(planId);
+        } else {
+            expandPlan(planId);
+        }
+    });
+});
+
+// Event listeners para botones de cerrar (X)
+closeButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.stopPropagation();
+        const planId = this.getAttribute('data-plan');
+        closePlan(planId);
+    });
+});
+
+// Cerrar al hacer clic fuera del plan expandido
+document.addEventListener('click', function(e) {
+    const expandedCard = document.querySelector('.plan-card.expanded');
+    if (expandedCard && !expandedCard.contains(e.target)) {
+        const planId = expandedCard.id.replace('plan-card-', '');
+        closePlan(planId);
+    }
+});
+
+// Cerrar con tecla ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        const expandedCard = document.querySelector('.plan-card.expanded');
+        if (expandedCard) {
+            const planId = expandedCard.id.replace('plan-card-', '');
+            closePlan(planId);
+        }
+    }
+});
+});
+
+// LÓGICA DEL COMPARADOR DE PLANES - MEJORADO
+document.addEventListener('DOMContentLoaded', function() {
+const comparatorModal = document.getElementById('comparator-modal');
+const openComparatorBtn = document.getElementById('open-comparator-redes');
+const closeComparatorBtn = document.getElementById('close-comparator');
+// Abrir comparador
+if (openComparatorBtn) {
+    openComparatorBtn.addEventListener('click', function() {
+        comparatorModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+}
+
+// Cerrar comparador
+if (closeComparatorBtn) {
+    closeComparatorBtn.addEventListener('click', function() {
+        comparatorModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+}
+
+// Cerrar al hacer clic fuera del modal
+comparatorModal.addEventListener('click', function(e) {
+    if (e.target === comparatorModal) {
+        comparatorModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// Cerrar con tecla ESC
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && comparatorModal.classList.contains('active')) {
+        comparatorModal.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+});
+
+// MEJORA PARA EL COMPARADOR MÓVIL - MINIMALISTA
+const comparatorWrapper = document.querySelector('.comparator-wrapper');
+const scrollHint = document.querySelector('.scroll-hint');
+
+if (comparatorWrapper && scrollHint) {
+    // Ocultar hint después de primer scroll
+    comparatorWrapper.addEventListener('scroll', function() {
+        if (this.scrollLeft > 20) {
+            scrollHint.style.opacity = '0';
+            scrollHint.style.transition = 'opacity 0.3s ease';
+        }
+    });
+    
+    // Mostrar hint si no hay scroll después de 3 segundos
+    setTimeout(() => {
+        if (comparatorWrapper.scrollLeft === 0) {
+            scrollHint.style.animation = 'pulse 2s infinite';
+        }
+    }, 3000);
+}
+});
+// LÓGICA PARA PESTAÑAS DE SERVICIOS
+document.addEventListener('DOMContentLoaded', function() {
+const tabButtons = document.querySelectorAll('.service-tab-btn');
+const tabContents = document.querySelectorAll('.service-content');
+
+tabButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+        e.preventDefault();
+        const tabId = this.getAttribute('data-tab');
+        
+        console.log('Click en pestaña:', tabId); // Para debug
+
+        // Remover clase active de todos los botones
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+
+        // Agregar clase active al botón clickeado
+        this.classList.add('active');
+
+        // Ocultar todos los contenidos
+        tabContents.forEach(content => {
+            content.classList.remove('active');
+        });
+
+        // Mostrar el contenido correspondiente
+        const targetContent = document.getElementById(tabId + '-content');
+        console.log('Target content:', targetContent); // Para debug
+        
+        if (targetContent) {
+            targetContent.classList.add('active');
+            
+            // Forzar visibilidad de las cards
+            setTimeout(() => {
+                const cards = targetContent.querySelectorAll('.plan-card');
+                console.log('Cards encontradas:', cards.length); // Para debug
+                cards.forEach(card => {
+                    card.classList.add('active');
+                });
+            }, 100);
+        }
+    });
+});
+// COMPARADOR PARA DISEÑO WEB
+const comparatorModalWeb = document.getElementById('comparator-modal-web');
+const openComparatorWeb = document.getElementById('open-comparator-web');
+const closeComparatorWeb = document.getElementById('close-comparator-web');
+
+if (openComparatorWeb && comparatorModalWeb) {
+    openComparatorWeb.addEventListener('click', function() {
+        comparatorModalWeb.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    });
+}
+
+if (closeComparatorWeb) {
+    closeComparatorWeb.addEventListener('click', function() {
+        comparatorModalWeb.classList.remove('active');
+        document.body.style.overflow = 'auto';
+    });
+}
+
+if (comparatorModalWeb) {
+    comparatorModalWeb.addEventListener('click', function(e) {
+        if (e.target === comparatorModalWeb) {
+            comparatorModalWeb.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    });
+}
+
+// Cerrar con tecla ESC también para el comparador web
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        if (comparatorModalWeb.classList.contains('active')) {
+            comparatorModalWeb.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+    }
+});
+});
+
+// Función para mostrar notificaciones (Toasts)
+function showToast(message, type = "success") {
+const container = document.getElementById("toast-container");
+const toast = document.createElement("div");
+toast.className = `toast ${type}`;
+toast.innerHTML = `<span>${message}</span>`;
+container.appendChild(toast);
+
+setTimeout(() => toast.classList.add("show"), 100);
+
+setTimeout(() => {
+toast.classList.remove("show");
+setTimeout(() => toast.remove(), 500);
+}, 4000);
+}
+
+// Efecto de brillo interactivo
+const glow = document.getElementById("interactive-glow");
+window.addEventListener("mousemove", (e) => {
+const { clientX, clientY } = e;
+requestAnimationFrame(() => {
+glow.style.transform = `translate(${clientX}px, ${clientY}px) translate(-50%, -50%)`;
+});
+});
+
+// Botón "Ir arriba"
+const btnUp = document.getElementById("btn-up");
+window.addEventListener("scroll", () => {
+if (window.scrollY > 400) {
+btnUp.classList.add("show");
+} else {
+btnUp.classList.remove("show");
+}
+});
+
+// Observador para animaciones de entrada (Reveal)
+const revealObserver = new IntersectionObserver((entries) => {
+entries.forEach((entry) => {
+if (entry.isIntersecting) {
+entry.target.classList.add("active");
+}
+});
+}, { threshold: 0.1 });
+
+document.querySelectorAll(".reveal").forEach((element) => {
+revealObserver.observe(element);
+});
+
+// Alerta personalizada al hacer clic derecho
+const alertBox = document.getElementById("right-click-alert");
+window.addEventListener("contextmenu", (e) => {
+e.preventDefault();
+alertBox.style.left = `${e.clientX}px`;
+alertBox.style.top = `${e.clientY - 15}px`;
+alertBox.style.opacity = "1";
+
+setTimeout(() => {
+alertBox.style.opacity = "0";
+}, 2000);
+});
+
+// --- LÓGICA DE ENVÍO DE FORMULARIO ---
+document.getElementById("talent-form").addEventListener("submit", function(e) {
+e.preventDefault();
+
+if (this.user_verification.value) return;
+
+const btn = document.getElementById("btn-submit");
+const originalText = btn.innerText;
+
+btn.innerText = "PROCESANDO...";
+btn.disabled = true;
+btn.style.opacity = "0.5";
+
+const formData = new FormData(this);
+
+fetch("enviar.php", {
+method: "POST",
+body: formData
+})
+.then(response => response.text())
+.then(data => {
+console.log("Respuesta del servidor:", data);
+
+if (data.includes("OK_ENVIADO") || data.trim() === "success") {
+showToast("¡Postulación enviada con éxito!");
+this.reset();
+} else {
+showToast("Error: " + data.substring(0, 30), "error");
+}
+})
+.catch(error => {
+console.error("Error Fetch:", error);
+showToast("Error de conexión con el servidor", "error");
+})
+.finally(() => {
+btn.innerText = originalText;
+btn.disabled = false;
+btn.style.opacity = "1";
+});
+});
+
+// FIX: Prevenir el autocompletado que rompe el diseño
+document.querySelectorAll('input[autocomplete="off"]').forEach(input => {
+input.addEventListener('focus', function() {
+this.setAttribute('autocomplete', 'new-password');
+});
+});
+</script>
+</html>
